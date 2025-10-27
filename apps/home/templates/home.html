@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Clarion Sense — Ephyra{% endblock %}
+
+{% block content %}
+
+<!-- Parent Market Landing Page -->
+<section class="section" style="background-color: #ebf8ff;">
+  <div class="grid">
+    <div>
+      <h1>Know the moment your baby needs a change</h1>
+      <p>Clarion Sense™ uses safe air sensors to detect when your baby’s diaper is soiled — instantly alerting your phone.</p>
+      <a href="#" class="button">Join the Early Access List</a>
+    </div>
+    <div>
+      <img src="{% static 'images/newborn-baby-sleeping-in-crib.jpg' %}" alt="Baby sensor device">
+    </div>
+  </div>
+</section>
+
+<!-- Care Facility Landing Page -->
+<section class="section" style="background-color: #ffffff; border-top: 1px solid #e5e7eb;">
+  <div class="grid">
+    <div>
+      <img src="{% static 'images/air_sensor_product.png' %}" alt="Nurse dashboard">
+    </div>
+    <div>
+      <h2>Smarter hygiene monitoring for dignified care</h2>
+      <p>Clarion Sense™ automatically detects soiled diapers — improving patient comfort, saving staff time, and reducing infection risk.</p>
+      <ul>
+        <li>Reduce workload and manual checks</li>
+        <li>Track hygiene data for compliance</li>
+        <li>Improve care quality and satisfaction</li>
+      </ul>
+      <a href="#" class="button">Request a Pilot Program</a>
+    </div>
+  </div>
+</section>
+
+<!-- Caregiver / Home Health Landing Page -->
+<section class="section" style="background-color: #ecfdf5; border-top: 1px solid #e5e7eb;">
+  <div class="grid">
+    <div>
+      <h2>Comfort, dignity, and peace of mind — now automatic</h2>
+      <p>The smart diaper sensor that alerts you when a change is needed, helping you care better and stress less.</p>
+      <ul>
+        <li>Instant alerts mean fewer accidents</li>
+        <li>Protects skin health and prevents infections</li>
+        <li>Reduces nighttime disruptions</li>
+      </ul>
+      <a href="#" class="button" style="background-color: #10b981;">Join the Caregiver Trial</a>
+    </div>
+    <div>
+      <img src="{% static 'images/elderly_disabled_person.jpg' %}" alt="Elder caregiver">
+    </div>
+  </div>
+</section>
+
+{% endblock %}

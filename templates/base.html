@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ephyra{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <style>
+        /* Reset & basic styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a { text-decoration: none; color: inherit; }
+        header, footer { background-color: #ffffff; border-bottom: 1px solid #e5e7eb; }
+        nav { max-width: 1120px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        nav a:hover { color: #6366f1; }
+        main { flex-grow: 1; max-width: 1120px; margin: 0 auto; padding: 24px 16px; }
+        footer { padding: 16px 16px; text-align: center; font-size: 0.875rem; color: #6b7280; }
+        .section { padding: 64px 16px; max-width: 960px; margin: 0 auto; }
+        .section h1, .section h2 { margin-bottom: 16px; }
+        .section p { margin-bottom: 24px; }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            background-color: #3b82f6;
+        }
+        .button:hover { background-color: #2563eb; }
+        img { max-width: 100%; border-radius: 16px; }
+        .grid { display: flex; flex-wrap: wrap; gap: 32px; }
+        .grid > div { flex: 1; min-width: 300px; }
+        ul { margin-left: 20px; margin-bottom: 24px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="{% url 'home' %}" style="font-size: 24px; font-weight: bold; color: #4f46e5;">Ephyra</a>
+            <div>
+                <a href="#" style="margin-right: 16px;">Home</a>
+                <a href="#" style="margin-right: 16px;">Shop</a>
+                <a href="#" style="margin-right: 16px;">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        © 2025 Ephyra. All rights reserved.
+    </footer>
+</body>
+</html>
