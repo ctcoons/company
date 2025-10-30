@@ -55,9 +55,7 @@ git checkout -b feature-myfeature dev
 git branch                  # check current branch
 git checkout feature-myfeature
 git fetch origin
-git merge origin/dev               # merge latest dev changes
-git add .                   # stage changes
-git commit -m "Short description of work"
+git rebase origin/dev
 git push origin feature-myfeature
 ```
 
@@ -75,7 +73,7 @@ git push origin feature-myfeature
 
 ---
 
-## 3. End of the Day
+## 3. Pushing Your Branch to Dev
 
 **Objective:**
 
