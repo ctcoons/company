@@ -1,181 +1,132 @@
-# Git Workflow Guide for Developers
+# Git Branch Workflow for Developers
 
-This guide explains the recommended Git workflow for working with our branches:
-
-```
-dev → feature-*
-```
-
-It includes **macOS/Linux** and **Windows** commands, organized by workflow stages: start of day, during the day, end of day, and pushing to `dev`.
+This document explains the standard Git workflow for our team using **prod** and **dev** branches.
 
 ---
 
-## 1. Creating a New Branch
+## Branch Structure
 
-**Objective:**
+* **prod** → The production branch. **Do not make changes directly here.**
+* **dev** → The main development branch. All feature branches are created from here.
+* **feature branches** → Each developer works in their own branch created from **dev**.
 
-* Make sure you are up-to-date with `dev`.
-* Create or switch to your feature branch.
+---
 
-**macOS/Linux**
+## Daily Workflow
+
+### 1. Clone the repository (first time only)
 
 ```bash
-cd path/to/project
-# Fetch latest changes
-git fetch origin
-# Switch to dev branch
+# Replace with the actual repo URL
+git clone https://github.com/your-org/your-repo.git
+cd your-repo
+```
+
+### 2. Create a feature branch from dev (first time for a new feature)
+
+```bash
+git checkout dev
+git pull origin dev  # Make sure dev is up to date
+
+# Create and switch to your feature branch
+git checkout -b feature-yourname
+
+# Push your new branch to GitHub
+git push -u origin feature-yourname
+```
+
+---
+
+## Daily Start (Before Working)
+
+Every morning, make sure your feature branch is up to date with the latest changes from **dev**.
+
+```bash
+git checkout dev
+git pull origin dev  # Get latest changes from dev
+
+git checkout feature-yourname
+git merge dev       # Merge those updates into your branch
+# OR (if you prefer a cleaner history)
+# git rebase dev
+```
+
+If there are merge conflicts, resolve them before continuing.
+
+---
+
+## During Development
+
+Make commits regularly as you work.
+
+```bash
+git add .
+git commit -m "Describe what you did"
+git push origin feature-yourname
+```
+
+---
+
+## When Your Feature Is Ready
+
+Once your feature is complete and tested:
+
+1. Ensure your branch is fully synced with **dev**:
+
+   ```bash
+   git checkout dev
+   git pull origin dev
+   git checkout feature-yourname
+   git merge dev
+   ```
+
+2. Push your final version:
+
+   ```bash
+   git push origin feature-yourname
+   ```
+
+3. Open a **Pull Request (PR)** from your branch → **dev** in GitHub.
+
+   * Title: `Feature: brief description`
+   * Reviewers: Tag your team lead or reviewer.
+
+---
+
+## Merging to Dev
+
+Once the PR is reviewed and approved, it will be merged into **dev**.
+
+* Only maintainers or team leads should merge into **dev**.
+* Never push directly to **dev** or **prod**.
+
+---
+
+## Summary
+
+| Branch           | Purpose                   | Who Can Push         |
+| ---------------- | ------------------------- | -------------------- |
+| prod             | Production-ready code     | Leads only           |
+| dev              | Active development branch | Leads only (via PRs) |
+| feature-yourname | Individual developer work | Each developer       |
+
+---
+
+## Example Quick Commands
+
+```bash
+# Sync with dev before working
 git checkout dev
 git pull origin dev
-# Create a new feature branch if starting new work
-git checkout -b feature-myfeature dev
-```
-
-**Windows (cmd/powershell)**
-
-```powershell
-cd path\to\project
-git fetch origin
-git checkout dev
-git pull origin dev
-git checkout -b feature-myfeature dev
-```
-
----
-
-## 2. Keep Your Branch Current with Dev -- DO EVERY TIME BEFORE YOU CODE!!
-
-**Objective:**
-
-* Regularly sync your feature branch with `dev` to prevent conflicts.
-* Stage and commit changes frequently.
-
-**macOS/Linux**
-
-```bash
-git branch                  # check current branch
-git checkout feature-myfeature
-git fetch origin
-git rebase origin/dev
-git push origin feature-myfeature
-```
-
-**Windows**
-
-```powershell
-git branch
-git checkout feature-myfeature
-git fetch origin
-git merge origin
-git add .
-git commit -m "Short description of work"
-git push origin feature-myfeature
-```
-
----
-
-## 3. Pushing Local Changes to Your Branch on GitHub
-
-**Objective:**
-
-* Make sure your feature branch is up-to-date.
-* Push all changes to remote.
-
-**macOS/Linux**
-
-```bash
-git checkout feature-myfeature
-git fetch origin
+git checkout feature-yourname
 git merge dev
-git add .
-git commit -m "End-of-day updates"
-git push origin feature-myfeature
-```
 
-**Windows**
+# Push changes
+git push origin feature-yourname
 
-```powershell
-git checkout feature-myfeature
-git fetch origin
-git merge dev
-git add .
-git commit -m "End-of-day updates"
-git push origin feature-myfeature
+# After approval, open PR → dev
 ```
 
 ---
 
-## 4. Ready to Push to Dev (Merge Feature Branch)
-
-**Objective:**
-
-* Merge your completed feature branch into `dev` and push via a Pull Request.
-
-**Recommended:** Use a Pull Request (PR) on GitHub/GitLab to merge `feature-*` into `dev`. Direct push is **not allowed**.
-
-**macOS/Linux**
-
-```bash
-git checkout feature-myfeature
-git fetch origin
-git merge dev   # make sure branch is up-to-date
-git push origin feature-myfeature
-# Create Pull Request on GitHub/GitLab to merge into dev
-```
-
-**Windows**
-
-```powershell
-git checkout feature-myfeature
-git fetch origin
-git merge dev
-git push origin feature-myfeature
-# Create Pull Request on GitHub/GitLab to merge into dev
-```
-
-**Notes:**
-
-* Always resolve merge conflicts before pushing to your feature branch.
-* Ignore `.pyc` and `__pycache__/` files by adding to `.gitignore`:
-
-```
-*.pyc
-__pycache__/
-```
-
----
-
-## 5. Helpful Commands
-
-* Check status:
-
-```bash
-git status
-```
-
-* See recent commits:
-
-```bash
-git log --oneline --graph --decorate --all
-```
-
-* Switch branches:
-
-```bash
-git checkout branch-name
-```
-
-* Delete a local branch (after merging):
-
-```bash
-git branch -d feature-myfeature
-```
-
-* Delete a remote branch:
-
-```bash
-git push origin --delete feature-myfeature
-```
-
----
-
-> ⚠️ **Important:** Never make changes directly on `dev`. Always work on a `feature-*` branch and use Pull Requests to merge.
+Following this workflow ensures a clean, stable development process and minimizes conflicts between branches.
