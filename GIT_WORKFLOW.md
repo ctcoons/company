@@ -42,7 +42,7 @@ git checkout -b feature-myfeature dev
 
 ---
 
-## 2. Updating Your Branch from Dev
+## 2. Keep Your Branch Current with Dev -- DO EVERY TIME BEFORE YOU CODE!!
 
 **Objective:**
 
@@ -73,7 +73,7 @@ git push origin feature-myfeature
 
 ---
 
-## 3. Pushing Your Branch to Dev
+## 3. Pushing Local Changes to Your Branch on GitHub
 
 **Objective:**
 
